@@ -68,31 +68,16 @@ body{
     transition: background-color 0.2s ease-in-out;
 }
 
-@media (max-width: 576px) {
-	.screen {
-		height: auto;
-		width: 100%;
-	}
+@media screen and (max-width:450px) {
+    #form-container{
+        width: 95%;
 
-	.screen__content {
-		padding: 10px; /* Adjust padding for smaller screens */
-	}
+    }
 
-	.login__input {
-		width: 100%; /* Full width input fields on smaller screens */
-	}
-
-	.social-login {
-		position: static; /* Remove absolute positioning for social login */
-		text-align: center;
-		margin-top: 20px; /* Adjust margin for smaller screens */
-	}
-
-	.register-link {
-		position: static; /* Remove absolute positioning for register link */
-		text-align: center;
-		margin-top: 20px; /* Adjust margin for smaller screens */
-	}
+    #welcome-message h1{
+        font-size: 24px;
+    }
+    
 }
 /* ----------------styling the room------------- */
 
