@@ -1,0 +1,54 @@
+{% extends "base/main.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<main>
+    <div id = "form-container">
+        <img id="logo" src="{% static 'images/chat-icon.png' %}">
+        <div id="welcome-message">
+            <h1>Welcome to Videofy</h1>
+            <p>A group video calling app just for you</p> 
+        </div>
+
+        <form id="form">
+            <div class="form-field">
+                <input type="text" name="room" placeholder="Enter room name..." style="text-transform: uppercase;">
+            </div>
+            <div class="form-field">
+                <input type="text" name="username" placeholder="Enter your name..." style="text-transform: uppercase;">
+            </div>
+            <div class="form-field">
+                <input type="submit" value="Join">
+            </div>
+        </form>
+    </div>
+
+
+</main>
+<script type="text/javascript">
+    let form = document.getElementById("form");
+
+    let handleSumbit = async (e) => {
+        e.preventDefault();
+
+        let room = e.target.room.value.toUpperCase();
+        let name = e.target.username.value;
+        let response = await fetch(`/get_token/?channel=${room}`);
+        let data = await response.json();
+
+        let token = data.token;
+        let UID = data.uid;
+
+        sessionStorage.setItem('UID', UID);
+        sessionStorage.setItem('token', token);
+        sessionStorage.setItem('room', room);
+        sessionStorage.setItem('name', name);
+
+        window.open("/room/", "_self");
+    }
+
+    form.addEventListener("submit", handleSumbit);
+</script>
+{% endblock content %}

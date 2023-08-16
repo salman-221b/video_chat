@@ -1,0 +1,1 @@
+web: gunicorn video_chat.wsgi --log-file -
